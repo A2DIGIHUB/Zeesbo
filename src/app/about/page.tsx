@@ -81,7 +81,8 @@ const content = {
 
 export default function AboutPage() {
   const { language } = useLanguage();
-  const t = content[language];
+  // Fallback to English if the content is not available in the selected language
+  const t = content[language] || content.en;
 
   return (
     <main className="min-h-screen bg-pearl dark:bg-charcoal">

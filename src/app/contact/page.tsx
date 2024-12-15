@@ -55,7 +55,7 @@ const content = {
 
 export default function ContactPage() {
   const { language } = useLanguage();
-  const t = content[language];
+  const t = content[language] || content.en;
   const isRTL = language === 'ar';
 
   const [formData, setFormData] = useState({

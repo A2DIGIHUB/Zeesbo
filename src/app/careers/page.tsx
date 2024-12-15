@@ -155,7 +155,9 @@ const content = {
 export default function CareersPage() {
   const { language } = useLanguage();
   const [selectedPosition, setSelectedPosition] = useState<number | null>(null);
-  const t = content[language];
+  const t = content[language] || content.en;
+  const whyJoinUsText = language === 'ar' ? 'لماذا تنضم إلينا؟' : 'Why Join Us?';
+  const openPositionsText = language === 'ar' ? 'الوظائف المتاحة' : 'Open Positions';
 
   return (
     <main className="min-h-screen bg-pearl dark:bg-charcoal">
@@ -205,7 +207,7 @@ export default function CareersPage() {
             transition={{ duration: 0.5 }}
             className="text-4xl font-bold text-royal dark:text-gold text-center mb-16"
           >
-            {language === 'en' ? 'Why Join Us?' : 'لماذا تنضم إلينا؟'}
+            {whyJoinUsText}
           </motion.h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {t.benefits.map((benefit, index) => (
@@ -238,7 +240,7 @@ export default function CareersPage() {
             transition={{ duration: 0.5 }}
             className="text-4xl font-bold text-royal dark:text-gold text-center mb-16"
           >
-            {language === 'en' ? 'Open Positions' : 'الوظائف المتاحة'}
+            {openPositionsText}
           </motion.h2>
           <div className="space-y-6">
             {t.positions.map((position, index) => (

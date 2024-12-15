@@ -99,11 +99,15 @@ const projects = {
 export default function ProjectsPage() {
   const { language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const t = projects[language];
+  const t = projects[language] || projects.en;
+  const pageTitle = language === 'ar' ? 'مشاريعنا' : 'Our Projects';
+  const pageSubtitle = language === 'ar'
+    ? 'اكتشف محفظتنا من المشاريع الاستثنائية'
+    : 'Discover our portfolio of exceptional projects';
 
   const filteredProjects = t.items.filter(
     (project) =>
-      selectedCategory === (language === 'en' ? 'All' : 'الكل') ||
+      selectedCategory === (language === 'ar' ? 'الكل' : 'All') ||
       project.category === selectedCategory
   );
 
@@ -126,12 +130,10 @@ export default function ProjectsPage() {
               className="text-pearl"
             >
               <h1 className="text-5xl md:text-6xl font-bold mb-4">
-                {language === 'en' ? 'Our Projects' : 'مشاريعنا'}
+                {pageTitle}
               </h1>
               <p className="text-xl md:text-2xl text-pearl/90">
-                {language === 'en'
-                  ? 'Discover our portfolio of exceptional projects'
-                  : 'اكتشف محفظتنا من المشاريع الاستثنائية'}
+                {pageSubtitle}
               </p>
             </motion.div>
           </div>

@@ -6,6 +6,11 @@ import { motion } from 'framer-motion';
 
 const NotFound = () => {
   const { language } = useLanguage();
+  const title = language === 'ar' ? 'المقال غير موجود' : 'Post Not Found';
+  const description = language === 'ar'
+    ? 'عذراً، لم نتمكن من العثور على المقال الذي تبحث عنه.'
+    : "Sorry, we couldn't find the blog post you're looking for.";
+  const backText = language === 'ar' ? 'العودة إلى المدونة' : 'Back to Blog';
 
   return (
     <main className="min-h-screen bg-pearl dark:bg-charcoal dark:text-pearl flex items-center justify-center">
@@ -17,18 +22,16 @@ const NotFound = () => {
         >
           <h2 className="text-6xl font-bold text-royal dark:text-gold mb-4">404</h2>
           <h1 className="text-3xl font-bold text-royal dark:text-gold mb-4">
-            {language === 'ar' ? 'المقال غير موجود' : 'Post Not Found'}
+            {title}
           </h1>
           <p className="text-lg text-charcoal-light dark:text-silver mb-8">
-            {language === 'ar'
-              ? 'عذراً، لم نتمكن من العثور على المقال الذي تبحث عنه.'
-              : 'Sorry, we couldn\'t find the blog post you\'re looking for.'}
+            {description}
           </p>
           <Link
             href="/blog"
             className="inline-block bg-gold text-charcoal px-8 py-4 rounded-md hover:bg-gold-light transition-all"
           >
-            {language === 'ar' ? 'العودة إلى المدونة' : 'Back to Blog'}
+            {backText}
           </Link>
         </motion.div>
       </div>

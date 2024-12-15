@@ -169,7 +169,7 @@ const content = {
 
 export default function ResidentialPage() {
   const { language } = useLanguage();
-  const t = content[language];
+  const t = content[language] || content.en;
 
   return (
     <main className="min-h-screen bg-pearl dark:bg-charcoal">

@@ -17,6 +17,8 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     onSearch(query);
   };
 
+  const placeholder = language === 'ar' ? 'ابحث في المدونة...' : 'Search blog posts...';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -29,7 +31,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder={language === 'ar' ? 'ابحث في المدونة...' : 'Search blog posts...'}
+          placeholder={placeholder}
           className="w-full px-6 py-4 bg-white dark:bg-charcoal-light rounded-full shadow-lg focus:ring-2 focus:ring-gold dark:focus:ring-gold-light outline-none text-charcoal dark:text-pearl placeholder-charcoal-light dark:placeholder-pearl-dark"
           dir={language === 'ar' ? 'rtl' : 'ltr'}
         />

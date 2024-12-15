@@ -48,6 +48,8 @@ const blogPosts = [
 
 export default function BlogSection() {
   const { language } = useLanguage();
+  const dateLocale = language === 'ar' ? 'ar-SA' : 'en-US';
+  const readMoreText = language === 'ar' ? 'اقرأ المزيد ←' : 'Read More →';
 
   return (
     <section id="blog" className="py-20 bg-pearl">
@@ -80,30 +82,30 @@ export default function BlogSection() {
               <div className="relative h-48">
                 <BlurImage
                   src={post.image}
-                  alt={post.title[language]}
+                  alt={post.title[language] || post.title.en}
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
                 <time className="text-sm text-charcoal-light">
-                  {new Date(post.date).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US', {
+                  {new Date(post.date).toLocaleDateString(dateLocale, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
                   })}
                 </time>
                 <h3 className="text-xl font-bold text-royal mt-2 mb-3">
-                  {post.title[language]}
+                  {post.title[language] || post.title.en}
                 </h3>
                 <p className="text-charcoal-light mb-4">
-                  {post.excerpt[language]}
+                  {post.excerpt[language] || post.excerpt.en}
                 </p>
                 <a
                   href={`/blog/${post.id}`}
                   className="text-gold hover:text-gold-light transition-colors font-semibold"
                 >
-                  {language === 'ar' ? 'اقرأ المزيد ←' : 'Read More →'}
+                  {readMoreText}
                 </a>
               </div>
             </motion.article>
