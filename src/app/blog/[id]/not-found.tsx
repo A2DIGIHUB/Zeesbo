@@ -4,7 +4,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-export default function NotFound() {
+const NotFound = () => {
   const { language } = useLanguage();
 
   return (
@@ -19,14 +19,14 @@ export default function NotFound() {
           <h1 className="text-3xl font-bold text-royal dark:text-gold mb-4">
             {language === 'ar' ? 'المقال غير موجود' : 'Post Not Found'}
           </h1>
-          <p className="text-charcoal-light dark:text-pearl-dark mb-8">
+          <p className="text-lg text-charcoal-light dark:text-silver mb-8">
             {language === 'ar'
               ? 'عذراً، لم نتمكن من العثور على المقال الذي تبحث عنه.'
-              : 'Sorry, we couldn't find the blog post you're looking for.'}
+              : 'Sorry, we couldn\'t find the blog post you\'re looking for.'}
           </p>
           <Link
             href="/blog"
-            className="inline-block px-8 py-3 bg-royal dark:bg-gold text-pearl rounded-lg hover:bg-royal-light dark:hover:bg-gold-light transition-colors"
+            className="inline-block bg-gold text-charcoal px-8 py-4 rounded-md hover:bg-gold-light transition-all"
           >
             {language === 'ar' ? 'العودة إلى المدونة' : 'Back to Blog'}
           </Link>
@@ -34,4 +34,6 @@ export default function NotFound() {
       </div>
     </main>
   );
-}
+};
+
+export default NotFound;
