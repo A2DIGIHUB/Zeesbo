@@ -79,10 +79,14 @@ const content = {
   },
 };
 
+type ContentType = typeof content;
+type SupportedLanguage = keyof ContentType;
+
 export default function AboutPage() {
   const { language } = useLanguage();
-  // Fallback to English if the content is not available in the selected language
-  const t = content[language] || content.en;
+  // Ensure we only use supported languages
+  const currentLanguage = (Object.keys(content).includes(language) ? language : 'en') as SupportedLanguage;
+  const t = content[currentLanguage];
 
   return (
     <main className="min-h-screen bg-pearl dark:bg-charcoal">

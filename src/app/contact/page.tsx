@@ -53,9 +53,13 @@ const content = {
   },
 };
 
+type ContentType = typeof content;
+type SupportedLanguage = keyof ContentType;
+
 export default function ContactPage() {
   const { language } = useLanguage();
-  const t = content[language] || content.en;
+  const currentLanguage = (Object.keys(content).includes(language) ? language : 'en') as SupportedLanguage;
+  const t = content[currentLanguage];
   const isRTL = language === 'ar';
 
   const [formData, setFormData] = useState({

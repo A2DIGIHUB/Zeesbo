@@ -152,10 +152,15 @@ const content = {
   },
 };
 
+type ContentType = typeof content;
+type SupportedLanguage = keyof ContentType;
+
 export default function CareersPage() {
   const { language } = useLanguage();
   const [selectedPosition, setSelectedPosition] = useState<number | null>(null);
-  const t = content[language] || content.en;
+  // Ensure we only use supported languages
+  const currentLanguage = (Object.keys(content).includes(language) ? language : 'en') as SupportedLanguage;
+  const t = content[currentLanguage];
   const whyJoinUsText = language === 'ar' ? 'لماذا تنضم إلينا؟' : 'Why Join Us?';
   const openPositionsText = language === 'ar' ? 'الوظائف المتاحة' : 'Open Positions';
 
